@@ -4,14 +4,14 @@ import dotenv from "dotenv";
 import chalk from "chalk";
 import figlet from "figlet";
 import { Command } from "commander";
-import { login } from "./commands/auth/login.js";
+import { login, logout, whoami } from "./commands/auth/login.js";
 
 dotenv.config();
 
 async function main() {
   console.log(
     chalk.cyan(
-      figlet.textSync("AI Agent CLI", {
+      figlet.textSync("Scrappy AI Tool", {
         font: "Standard",
         horizontalLayout: "default",
       }),
@@ -20,9 +20,14 @@ async function main() {
 
   console.log(chalk.gray("A cli based AI tool \n"));
 
-  const program = new Command("aiagent");
+  const program = new Command("Scrappy");
 
-  program.version("0.1.0").description("AI Agent CLI Tool").addCommand(login);
+  program
+    .version("0.1.0")
+    .description("Scrappy AI Tool")
+    .addCommand(login)
+    .addCommand(logout)
+    .addCommand(whoami);
 
   program.action(() => {
     program.help();

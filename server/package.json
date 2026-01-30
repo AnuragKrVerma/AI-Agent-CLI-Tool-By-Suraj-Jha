@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "aiagent": "./dist/cli/main.js"
+    "Scrappy": "./bin/scrappy.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -42,6 +42,7 @@
     "@types/pg": "^8.16.0",
     "prisma": "^7.3.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

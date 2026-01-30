@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { prisma } from "./prisma";
+import { prisma } from "./prisma.js";
 import { deviceAuthorization } from "better-auth/plugins";
 
 export const auth = betterAuth({
@@ -17,7 +17,7 @@ export const auth = betterAuth({
   },
   plugins: [
     deviceAuthorization({
-      verificationUri: "/device",
+      verificationUri: `${process.env.BACKEND_URL}/device`,
       expiresIn: "30m",
       interval: "5s",
     }),
