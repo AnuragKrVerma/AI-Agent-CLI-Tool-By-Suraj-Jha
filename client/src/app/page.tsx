@@ -4,7 +4,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { authClient } from "@/lib/auth-client";
 
 import Image from "next/image";
-import { vercel } from "better-auth";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
