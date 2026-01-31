@@ -188,7 +188,7 @@ async function pollForToken(
             chalk.bold.yellow(`Your access token is: ${data.access_token}`),
           );
           spinner.stop();
-          resolve(data.access_token);
+          resolve(data);
           return;
         } else if (error) {
           switch (error.error) {

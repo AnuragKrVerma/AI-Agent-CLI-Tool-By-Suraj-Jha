@@ -23,6 +23,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  conversations Conversation[]
 
   @@unique([email])
   @@map("user")
@@ -89,4 +90,27 @@ model DeviceCode {
   scope           String?
 
   @@map("deviceCode")
+}
+
+
+model Conversation {
+  id        String    @id @default(cuid())
+  title     String?
+  userId    String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime @default(now())  @updatedAt
+  mode      String    @default("chat")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  Message[]
+}
+
+model Message{
+  id             String      @id @default(cuid())
+  conversationId String
+  role           String
+  content        String
+  createdAt      DateTime    @default(now())
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
 }
