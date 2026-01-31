@@ -43,10 +43,10 @@ export async function loginAction() {
   intro(chalk.bold("🔐 Auth CLI Login"));
 
   // TODO: Change this with token management utils
-  const exixtingToken = await getStoredToken();
+  const existingToken = await getStoredToken();
   const expired = await isTokenExpired();
 
-  if (exixtingToken && !expired) {
+  if (existingToken && !expired) {
     const shouldReAuth = await confirm({
       message: "You are already logged in. Do you want to re-authenticate?",
       initialValue: false,
