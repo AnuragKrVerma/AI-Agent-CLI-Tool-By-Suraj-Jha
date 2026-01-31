@@ -165,7 +165,7 @@ async function updateConversationTitle(
 ) {
   if (messageCount === 1) {
     const title = userInput.slice(0, 50) + (userInput.length > 50 ? "..." : "");
-    await chatService.updateTitle(conversationId, title);
+    await chatService.updateConversationTitle(conversationId, title);
   }
 }
 
