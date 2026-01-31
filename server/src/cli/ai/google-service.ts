@@ -1,5 +1,5 @@
-import { google } from "@ai-sdk/google";
-import { streamText } from "ai";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { convertToModelMessages, streamText } from "ai";
 import { config } from "../../config/google.config.js";
 import chalk from "chalk";
 
@@ -11,9 +11,10 @@ export class AIService {
         "Google Generative AI API key is not set in environment variables.",
       );
     }
-    this.model = google(config.model, {
+    const google = createGoogleGenerativeAI({
       apiKey: config.googleApiKey,
     });
+    this.model = google(config.model);
   }
 
   /**
@@ -26,7 +27,12 @@ export class AIService {
    *
    */
 
-  async sendMessage(messages: any, onChunk: { (chunk: any): void; (arg0: string): void; }, tools = undefined, onToolCall = null) {
+  async sendMessage(
+    messages: any,
+    onChunk: { (chunk: any): void; (arg0: string): void },
+    tools = undefined,
+    onToolCall = null,
+  ) {
     try {
       const streamConfig = {
         model: this.model,
