@@ -143,7 +143,7 @@ const DeviceApprovalPage = () => {
             <Button
               onClick={handleAprrove}
               disabled={isProcessing.approve}
-              className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-color  flex items-center justify-center gap-2"
+              className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors  flex items-center justify-center gap-2"
             >
               {isProcessing.approve ? (
                 <>
