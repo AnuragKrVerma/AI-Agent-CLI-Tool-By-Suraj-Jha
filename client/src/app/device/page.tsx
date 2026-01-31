@@ -19,7 +19,7 @@ const DeviceAuthorizationPage = () => {
     setIsLoading(true);
 
     try {
-      const formattedCode = userCode.replace("/-/g", "").toUpperCase();
+      const formattedCode = userCode.replace(/-/g, "").toUpperCase();
       const response = await authClient.device({
         query: { user_code: formattedCode },
       });
