@@ -59,7 +59,7 @@ export class AIService {
    * Get a non-streaming response
    * @param {Array} messages - Array of messages objects
    * @param {Object} tools - Optional tools
-   * @param {Promise<string>} - Response text
+   * @returns {Promise<string>} Response text
    */
 
   async getMessage(messages: any, tools = undefined) {
