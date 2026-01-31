@@ -53,7 +53,7 @@ export async function isTokenExpired() {
   const expiresAt = new Date(token.expires_at);
   const now = new Date();
   // 5 minutes buffer
-  return expiresAt.getDate() - now.getTime() < 5 * 60 * 1000;
+  return expiresAt.getTime() - now.getTime() < 5 * 60 * 1000;
 }
 
 export async function requireAuth() {
