@@ -18,7 +18,7 @@ import { prisma } from "../../lib/prisma";
 import {
   availableTools,
   getEnabledTools,
-  getEnabledToolName,
+  getEnabledToolNames,
   enableTools,
   resetTools,
 } from "../../config/tools.config";
@@ -131,7 +131,7 @@ async function initConversation(
     tool,
   );
   spinner.success("Conversation ready");
-  const enableToolsNames = getEnabledToolName();
+  const enableToolsNames = getEnabledToolNames();
   const toolsDisplay =
     enableToolsNames.length > 0
       ? ` \n ${chalk.gray(`Tools: ${enableToolsNames.join(", ")}`)}`
@@ -144,7 +144,7 @@ async function initConversation(
       margin: { top: 1, bottom: 1 },
       borderStyle: "round",
       borderColor: "cyan",
-      title: "💭 Chat Session",
+      title: "🛠️ Tool Session",
       titleAlignment: "center",
     },
   );
@@ -280,7 +280,7 @@ async function updateConversationTitle(
 }
 
 async function chatLoop(conversationId: string) {
-  const enabledTools = getEnabledToolName();
+  const enabledTools = getEnabledToolNames();
   const helpBox = boxen(
     `${chalk.cyan("Type your message and press enter to send.")}\n${chalk.cyan("Type 'exit' to end the chat session.")}\n${enabledTools.length > 0 ? chalk.cyan(`Enabled tools: ${enabledTools.join(", ")}`) : chalk.cyan("No tools enabled.")} \n ${chalk.gray("Type 'exit' to end conversation")} \n ${chalk.gray(" Press Ctrl+C to cancel at any time")}`,
     {

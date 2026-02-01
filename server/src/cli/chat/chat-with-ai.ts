@@ -137,7 +137,7 @@ async function getAIResponse(conversationId: any) {
       if (isFirstChunk) {
         spinner.stop();
         console.log("\n");
-        const header = chalk.green.bold("Assistant: ");
+        const header = chalk.green.bold("🤖 Scrappy AI: ");
         console.log(header);
         console.log(chalk.gray("-".repeat(60)));
         isFirstChunk = false;
