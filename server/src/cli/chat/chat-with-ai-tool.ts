@@ -138,7 +138,7 @@ async function initConversation(
       : `\n ${chalk.gray(`No tools enabled`)}`;
 
   const conversationInfo = boxen(
-    `chalk.bold("Conversation")}: ${conversation.title} \n ${chalk.gray(`ID: ${conversation.id}`)} \n ${chalk.gray(`Mode: ${conversation.mode}`)}${toolsDisplay}`,
+    `${chalk.bold("Conversation")}: ${conversation.title} \n ${chalk.gray(`ID: ${conversation.id}`)} \n ${chalk.gray(`Mode: ${conversation.mode}`)}${toolsDisplay}`,
     {
       padding: 1,
       margin: { top: 1, bottom: 1 },
