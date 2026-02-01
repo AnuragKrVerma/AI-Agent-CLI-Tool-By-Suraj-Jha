@@ -1,20 +1,39 @@
 # Scrappy AI Tool
 
-A CLI-based AI agent tool with OAuth authentication and device flow support.
+A powerful CLI-based AI agent tool with OAuth authentication, multiple interaction modes, and autonomous application generation capabilities.
 
-Following = https://www.youtube.com/watch?v=vr6BmGpZjRs
+## ✨ Features
+
+- 🤖 **Three AI Interaction Modes:**
+  - **Chat Mode**: Simple conversation with AI
+  - **Tools Mode**: Enhanced chat with Google Search & Code Execution
+  - **Agent Mode**: Autonomous application generator for any tech stack
+- 🔐 **Secure OAuth Authentication** with device flow
+- 🎯 **Multi-language Support**: Generate apps in JavaScript, TypeScript, Python, Java, C#, C++, Go, Rust, and more
+- 📱 **Cross-platform**: Web, mobile, desktop, ML/AI applications
+- 🛠️ **Production-ready Code**: Complete, functional applications with proper architecture
 
 ## 📦 Project Structure
 
 ```
 AI Agent CLI Tool/
-├── client/          # Next.js frontend application
+├── client/          # Next.js frontend (OAuth web interface)
+│   ├── src/
+│   │   ├── app/            # Next.js 16 App Router
+│   │   ├── components/     # Reusable UI components
+│   │   └── lib/            # Client utilities
+│   └── package.json
 └── server/          # Node.js backend and CLI tool
     ├── src/
     │   ├── index.ts           # Express server
     │   ├── cli/
     │   │   ├── main.ts        # CLI entry point
-    │   │   └── commands/      # CLI commands
+    │   │   ├── commands/      # CLI commands (login, logout, wakeup)
+    │   │   ├── chat/          # Chat implementations
+    │   │   └── ai/            # AI service integrations
+    │   ├── config/
+    │   │   └── agent.config.ts  # Agent prompt & app generation
+    │   ├── service/           # Business logic
     │   └── lib/               # Shared libraries
     ├── bin/
     │   └── scrappy.js         # CLI wrapper script
@@ -48,13 +67,53 @@ AI Agent CLI Tool/
    ```
 
 3. **Setup environment variables**
-   Create a `.env` file in the `server` directory:
+
+   Create a `.env` file in the `server` directory with the following variables:
 
    ```env
-   DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
-   BETTER_AUTH_SECRET="your-secret-key"
+   # Server Configuration
+   PORT=3005
+
+   # Database Configuration (PostgreSQL/Neon)
+   DATABASE_URL="postgresql://user:password@host:port/database?sslmode=require"
+
+   # Better Auth Configuration
+   BETTER_AUTH_SECRET="your-secret-key-min-32-characters"
    BETTER_AUTH_URL="http://localhost:3005"
+
+   # OAuth Providers (GitHub)
+   GITHUB_CLIENT_ID="your-github-client-id"
+   GITHUB_CLIENT_SECRET="your-github-client-secret"
+
+   # Frontend/Backend URLs
+   FRONTEND_URL="http://localhost:3000"
+   BACKEND_URL="http://localhost:3005"
+
+   # Google Generative AI Configuration
+   GOOGLE_GENERATIVE_AI_API_KEY="your-google-ai-api-key"
+   SCRAPPY_MODEL="gemini-2.5-flash"
    ```
+
+   **How to get the required credentials:**
+   - **DATABASE_URL**:
+     - Use [Neon](https://neon.tech) for free PostgreSQL hosting
+     - Or use local PostgreSQL: `postgresql://postgres:password@localhost:5432/scrappy_db`
+   - **BETTER_AUTH_SECRET**:
+     - Generate a secure random string (min 32 characters)
+     - Example: `openssl rand -base64 32`
+   - **GITHUB_CLIENT_ID & GITHUB_CLIENT_SECRET**:
+     1. Go to GitHub → Settings → Developer settings → OAuth Apps
+     2. Create a new OAuth App
+     3. Set Authorization callback URL: `http://localhost:3005/api/auth/callback/github`
+     4. Copy Client ID and generate a new Client Secret
+   - **GOOGLE_GENERATIVE_AI_API_KEY**:
+     1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+     2. Create or select a project
+     3. Generate an API key
+     4. Copy the API key
+   - **SCRAPPY_MODEL**:
+     - Options: `gemini-2.5-flash`, `gemini-2.0-pro`, `gemini-1.5-pro`
+     - `gemini-2.5-flash` is recommended for speed and cost-effectiveness
 
 4. **Run database migrations**
 
@@ -164,7 +223,148 @@ Scrappy logout
 
 # Display currently logged in user
 Scrappy whoami
+
+# Wake up the AI service (main command)
+Scrappy wakeup
 ```
+
+### 🚀 Scrappy Wakeup - AI Interaction Modes
+
+After running `Scrappy wakeup`, you'll be presented with three interaction modes:
+
+#### 1. **Chat Mode** 💬
+
+Simple conversational AI interaction.
+
+- Direct chat with Google's Gemini AI
+- Natural language conversations
+- Quick Q&A and assistance
+- No tools or autonomous actions
+
+```bash
+Scrappy wakeup → Select "Chat"
+```
+
+#### 2. **Tools Mode** 🛠️
+
+Enhanced chat with powerful tools integration.
+
+- **Google Search**: Real-time web search for current information
+- **Code Execution**: Execute JavaScript/Python code snippets
+- **URL Context**: Fetch and summarize web page content
+- Combines AI reasoning with live data
+
+```bash
+Scrappy wakeup → Select "Tools"
+```
+
+**Available Tools:**
+
+- `google_search` - Search the web for current events and information
+- `code_execution` - Execute code for calculations and data processing
+- `url_context` - Fetch and analyze content from URLs
+
+#### 3. **Agent Mode** 🤖 (Autonomous Application Generator)
+
+The most powerful mode - generates complete, production-ready applications.
+
+```bash
+Scrappy wakeup → Select "Agentic Mode"
+```
+
+**What Agent Mode Can Build:**
+
+| Application Type   | Examples                                                           |
+| ------------------ | ------------------------------------------------------------------ |
+| **Web Apps**       | React, Next.js, Vue, Angular, vanilla HTML/CSS/JS                  |
+| **Backend APIs**   | Node.js/Express, Python/FastAPI, Java/Spring Boot, C#/ASP.NET Core |
+| **Mobile Apps**    | React Native, Flutter, Swift, Kotlin                               |
+| **Desktop Apps**   | Electron, Tauri, .NET MAUI, Qt                                     |
+| **ML/AI Projects** | TensorFlow, PyTorch, scikit-learn with data pipelines              |
+| **CLI Tools**      | Node.js, Python, Go, Rust command-line tools                       |
+| **Databases**      | Full-stack apps with PostgreSQL, MongoDB, MySQL                    |
+
+**Example Prompts for Agent Mode:**
+
+````bash
+# Simple vanilla web app
+"Create a todo app using HTML, CSS, and JavaScript only"
+Server Dependencies
+
+**AI & Tools:**
+- `@ai-sdk/google` ^3.0.18 - Google Generative AI SDK
+- `ai` ^6.0.64 - Vercel AI SDK for streaming and tool calling
+
+**CLI Framework:**
+- `commander` ^14.0.2 - CLI framework for building command-line tools
+- `@clack/prompts` ^1.0.0 - Beautiful interactive prompts
+- `chalk` ^5.6.2 - Terminal string styling
+- `figlet` ^1.10.0 - ASCII art generator for CLI banner
+- `boxen` ^8.0.1 - Create boxes in terminal
+- `yocto-spinner` ^1.0.0 - Terminal spinner
+- `marked` ^15.0.12 - Markdown parser
+- `marked-terminal` ^7.3.0 - Render markdown in terminal
+
+**Backend & Auth:**
+- `express` ^5.2.1 - Web server framework
+- `better-auth` ^1.4.18 - Authentication library with OAuth support
+- `cors` ^2.8.6 - CORS middleware
+- `open` ^11.0.0 - Open URLs in browser
+
+**Database:**
+- `@prisma/client` ^7.3.0 - Prisma ORM client
+- `@prisma/adapter-pg` ^7.3.0 - PostgreSQL adapter for Prisma
+- `pg` ^8.17.2 - PostgreSQL client
+
+**Utilities:**
+- `dotenv` ^17.2.3 - Environment variable management
+- `zod` ^4.3.6 - Schema validation
+
+### Server Dev Dependencies
+
+- `typescript` ^5.9.3 - TypeScript compiler
+- `tsx` ^4.21.0 - TypeScript execute - runs .ts files directly
+- `ts-node` ^10.9.2 - TypeScript execution engine
+- `nodemon` ^3.1.11 - Auto-restart server on file changes
+- `prisma` ^7.3.0 - Prisma CLI for migrations
+
+### Client Dependencies
+
+**Framework:**
+- `next` 16.1.6 - Next.js React framework
+- `react` 19.2.3 - React library
+- `react-dom` 19.2.3 - React DOM renderer
+
+**UI Components (Radix UI):**
+- Complete set of accessible, unstyled React components
+- Includes: accordion, alert-dialog, avatar, checkbox, dialog, dropdown-menu, select, tabs, tooltip, and more
+
+**Form & Validation:**
+- `react-hook-form` ^7.71.1 - Form state management
+- `@hookform/resolvers` ^5.2.2 - Validation resolvers
+- `zod` ^4.3.6 - Schema validation
+
+**Styling:**
+- `tailwindcss` ^4 - Utility-first CSS framework
+- `class-variance-authority` ^0.7.1 - Component variant styling
+- `clsx` ^2.1.1 - Conditional class names
+- `tailwind-merge` ^3.4.0 - Merge Tailwind classes
+
+**Additional Features:**
+- `better-auth` ^1.4.18 - Authentication client
+- `next-themes` ^0.4.6 - Theme management
+- `lucide-react` ^0.563.0 - Icon library
+- `recharts` ^2.15.4 - Chart library
+- `sonner` ^2.0.7 - Toast notifications
+**Agent Mode Features:**
+- ✅ Generates complete file structure
+- ✅ Production-ready, fully functional code
+- ✅ All dependencies with exact versions
+- ✅ Setup and run commands
+- ✅ Configuration files (tsconfig, .env.example, etc.)
+- ✅ README with documentation
+- ✅ Follows best practices for chosen language/framework
+- ✅ Security, testing, and error handling included
 
 ## 🔐 Authentication Flow
 
@@ -185,7 +385,7 @@ Without global installation:
 ```bash
 cd server
 npm run cli -- login
-```
+````
 
 With global installation:
 
