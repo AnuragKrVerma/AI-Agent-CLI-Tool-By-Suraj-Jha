@@ -245,7 +245,7 @@ async function getAIResponse(conversationId: string) {
             (tr) =>
               `${chalk.green("Tool Result:")} ${tr.toolName}\n${chalk.gray("Output: ")}${JSON.stringify(tr.output, null, 2)}`,
           )
-          .slice(2, 200)
+          .slice(0, 200)
           .join("\n\n"),
         {
           padding: 1,
