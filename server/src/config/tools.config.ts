@@ -1,6 +1,5 @@
 import { google } from "@ai-sdk/google";
 import chalk from "chalk";
-import { id } from "zod/v4/locales";
 
 export const availableTools = [
   {
