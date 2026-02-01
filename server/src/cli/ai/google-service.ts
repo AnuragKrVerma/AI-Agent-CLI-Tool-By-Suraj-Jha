@@ -1,5 +1,5 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { convertToModelMessages, generateObject, streamText } from "ai";
+import { generateObject, streamText } from "ai";
 import { config } from "../../config/google.config.js";
 import chalk from "chalk";
 
