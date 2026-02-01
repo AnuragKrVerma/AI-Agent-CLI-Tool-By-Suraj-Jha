@@ -187,13 +187,13 @@ export async function startAgentChat(conversationId = null) {
     );
 
     const user = await getUserFromToken();
-    const shouldCountinue = await confirm({
+    const shouldContinue = await confirm({
       message: chalk.yellow(
         "The agent will create files & folders in the current directory. Do you want to continue?",
       ),
       initialValue: true,
     });
-    if (!shouldCountinue || isCancel(shouldCountinue)) {
+    if (!shouldContinue || isCancel(shouldContinue)) {
       cancel(chalk.red("Agent mode cancelled by user."));
       process.exit(0);
     }
