@@ -95,7 +95,7 @@ export function enableTools(toolIds: string[]) {
   );
 }
 
-export function getEnabledToolName() {
+export function getEnabledToolNames() {
   const name = availableTools
     .filter((t) => t.enable)
     .map((t) => t.name);
