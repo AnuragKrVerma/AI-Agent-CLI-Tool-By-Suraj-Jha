@@ -6,7 +6,7 @@ import chalk from "chalk";
 import { z } from "zod";
 
 const ApplicationSchema = z.object({
-  folderName: z.string().describe("Kabab-Case folder name of the application"),
+  folderName: z.string().describe("Kebab-Case folder name of the application"),
   description: z.string().describe("Brief description of what was created"),
   files: z.array(
     z
