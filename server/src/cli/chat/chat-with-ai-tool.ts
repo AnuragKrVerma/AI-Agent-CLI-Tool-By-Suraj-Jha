@@ -355,7 +355,7 @@ export async function startToolChat(conversationId = null) {
       }),
     );
     const user = await getUserFromToken();
-    const toolsEnabled = await selectTools();
+    await selectTools();
     const conversation = await initConversation(
       user.id,
       conversationId,
