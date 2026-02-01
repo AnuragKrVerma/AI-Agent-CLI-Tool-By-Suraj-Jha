@@ -101,7 +101,7 @@ async function agentLoop(conversation: any) {
   while (true) {
     const userInput = await text({
       message: chalk.cyan("What would you like the agent to create?"),
-      placeholder: "Decscribe the application you want to generate...",
+      placeholder: "Describe the application you want to generate...",
       validate: (value) => {
         if (!value || value.trim().length === 0) {
           return "Please enter a valid description.";
