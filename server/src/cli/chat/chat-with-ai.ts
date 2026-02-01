@@ -85,9 +85,9 @@ async function initConversation(
 
   console.log(conversationInfo);
 
-  if (conversation.message?.length > 0) {
-    console.log(chalk.yellow("Previous message \n"));
-    displayMessages(conversation.message);
+  if (conversation.messages?.length > 0) {
+    console.log(chalk.yellow("Previous messages \n"));
+    displayMessages(conversation.messages);
   }
 
   return conversation;
