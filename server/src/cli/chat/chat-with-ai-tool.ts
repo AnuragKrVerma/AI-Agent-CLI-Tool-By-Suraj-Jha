@@ -8,9 +8,8 @@ import {
   intro,
   outro,
   multiselect,
-  select,
 } from "@clack/prompts";
-import { marked, options } from "marked";
+import { marked } from "marked";
 import { markedTerminal } from "marked-terminal";
 import { AIService } from "../ai/google-service";
 import { ChatService } from "../../service/chat.service";
