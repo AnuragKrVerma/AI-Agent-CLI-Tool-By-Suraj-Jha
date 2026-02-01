@@ -7,7 +7,6 @@ import {
   cancel,
   intro,
   outro,
-  multiselect,
   confirm,
 } from "@clack/prompts";
 import { AIService } from "../ai/google-service";
