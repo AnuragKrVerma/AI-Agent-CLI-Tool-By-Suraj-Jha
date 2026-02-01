@@ -15,7 +15,6 @@ import { ChatService } from "../../service/chat.service";
 import { getStoredToken } from "../../lib/token";
 import { prisma } from "../../lib/prisma";
 import { generateApplication } from "../../config/agent.config";
-import e from "express";
 
 const aiService = new AIService();
 const chatService = new ChatService();
