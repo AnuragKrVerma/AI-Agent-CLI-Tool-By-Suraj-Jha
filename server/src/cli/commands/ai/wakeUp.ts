@@ -62,7 +62,7 @@ const wakeUpAction = async () => {
       {
         value: "agent",
         label: "Agentic Mode",
-        hint: "Advanced AI Agent (Coming Soon)",
+        hint: "Advanced AI Agent with autonomous capabilities",
       },
     ],
   });
