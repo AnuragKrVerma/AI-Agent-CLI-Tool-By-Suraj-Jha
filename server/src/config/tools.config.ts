@@ -12,7 +12,6 @@ export const availableTools = [
     },
     enable: false,
   },
-  // Ai please add tools for code execution & url context
   {
     id: "code_execution",
     name: "Code Execution",
